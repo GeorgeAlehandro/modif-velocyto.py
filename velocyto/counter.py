@@ -272,16 +272,6 @@ class ExInCounter:
                         self.valid_bcset.add(bc)
                 strand = '-' if read.is_reverse else '+'
                 chrom = fin.get_reference_name(read.rname)  # this is return a string otherwise read.rname for the integer
-                print(chrom)
-                if chrom.startswith('chr'):
-                    # I have to deal with incongruences with the .gft (what is cellranger doing???)
-                    # NOTE Why this happens?
-                    if "_" in chrom:
-                        chrom = chrom.split("_")[1]
-                    else:
-                        chrom = chrom[3:]
-                        if chrom == "M":
-                            chrom = "MT"
                 pos = read.reference_start + 1  # reads in pysam are always 0-based, but 1-based is more convenient to wor with in bioinformatics
                 segments, ref_skipped, clip5, clip3 = self.parse_cigar_tuple(read.cigartuples, pos)
                 if segments == []:
