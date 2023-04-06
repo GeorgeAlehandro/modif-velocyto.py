@@ -272,6 +272,7 @@ class ExInCounter:
                         self.valid_bcset.add(bc)
                 strand = '-' if read.is_reverse else '+'
                 chrom = fin.get_reference_name(read.rname)  # this is return a string otherwise read.rname for the integer
+                print(chrom)
                 if chrom.startswith('chr'):
                     # I have to deal with incongruences with the .gft (what is cellranger doing???)
                     # NOTE Why this happens?
